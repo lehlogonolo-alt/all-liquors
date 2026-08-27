@@ -8,6 +8,9 @@ import {
   FaMapMarkerAlt
 } from "react-icons/fa";
 
+const API_URL =
+  import.meta.env.VITE_API_URL || "http://localhost:3000";
+
 function Contact() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -25,7 +28,7 @@ function Contact() {
     try {
       setLoading(true);
 
-      const res = await fetch("http://localhost:3000/contact", {
+      const res = await fetch(`${API_URL}/contact`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -78,33 +81,24 @@ function Contact() {
         <div className="contact-info">
 
           <div className="info-card">
-            <>
-            <FaMapMarkerAlt />         
-            Visit Store
-            </>
-
-            <p>
-              1293 Mametlhake Road
-              <br />
-              PHAKE, Phake, 0492
-            </p>
-
-            <a
-              href="https://www.google.com/maps/dir//All+Liquors+Wholesale,+1293+Mametlhake+Road,+PHAKE,+Phake,+0492/"
-              target="_blank"
-              rel="noreferrer"
-              className="contact-link"
-            >
-              Get directions →
-            </a>
+            <h3><FaMapMarkerAlt className="section-icon" /> Business Address</h3>
+            <p>105 Old Warmbath Rd<br />Carousel View, Hammanskraal, 0400<br />Mpumalanga, South Africa</p>
           </div>
 
           <div className="info-card">
-            <h3>
-            <FaPhoneAlt className="section-icon" />
-             Call Us
-            </h3>
-            <p>063 890 0066</p>
+            <h3><FaMapMarkerAlt className="section-icon" /> Store / Collection Location</h3>
+            <p>1293 Mametlhake Road<br />PHAKE, Phake, 0492</p>
+            <a href="https://www.google.com/maps/dir//All+Liquors+Wholesale,+1293+Mametlhake+Road,+PHAKE,+Phake,+0492/" target="_blank" rel="noreferrer" className="contact-link">Get directions →</a>
+          </div>
+
+          <div className="info-card">
+            <h3><FaPhoneAlt className="section-icon" /> Call Us</h3>
+            <a href="tel:+27769387673" className="contact-link">+27 76 938 7673</a>
+          </div>
+
+          <div className="info-card">
+            <h3><FaEnvelope className="section-icon" /> Email</h3>
+            <a href="mailto:Allliquors@gmail.com" className="contact-link">Allliquors@gmail.com</a>
           </div>
 
           <div className="info-card">
@@ -114,7 +108,7 @@ function Contact() {
             </h3>
 
             <a
-              href="https://wa.me/27767872888"
+              href="https://wa.me/27769387673"
               target="_blank"
               rel="noreferrer"
               className="contact-link whatsapp-link"

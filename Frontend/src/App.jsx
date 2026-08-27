@@ -43,6 +43,8 @@ import FAQ from "./components/FAQ";
 import About from "./components/About";
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import Terms from "./components/Terms";
+import ShippingPolicy from "./components/ShippingPolicy";
+import RefundPolicy from "./components/RefundPolicy";
 
 
 
@@ -346,6 +348,8 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms" element={<Terms />} />
+        <Route path="/shipping-policy" element={<ShippingPolicy />} />
+        <Route path="/refund-policy" element={<RefundPolicy />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
 

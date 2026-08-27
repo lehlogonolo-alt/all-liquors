@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import {
   FaFacebookF,
-  FaWhatsapp
+  FaWhatsapp,
+  FaPhoneAlt,
+  FaEnvelope,
+  FaMapMarkerAlt
 } from "react-icons/fa";
 
 import sabLogo from "../assets/SAB_Logo.jpg";
@@ -144,12 +147,45 @@ function Footer() {
               Terms & Conditions
             </Link>
 
-             <Link to="/about">
+             <Link to="/shipping-policy">
+              Shipping & Collection Policy
+            </Link>
+
+            <Link to="/refund-policy">
+              Refund Policy
+            </Link>
+
+            <Link to="/about">
               About Us
+            </Link>
+
+            <Link to="/contact">
+              Contact Us
             </Link>
 
           </div>
 
+
+          {/* CONTACT */}
+
+          <div className="footer-column footer-contact-column">
+            <h3>Contact</h3>
+
+            <a href="tel:+27769387673">
+              <FaPhoneAlt />
+              +27 76 938 7673
+            </a>
+
+            <a href="mailto:Allliquors@gmail.com">
+              <FaEnvelope />
+              Allliquors@gmail.com
+            </a>
+
+            <div className="footer-address">
+              <FaMapMarkerAlt />
+              <span>105 Old Warmbath Rd<br />Carousel View, Hammanskraal, 0400<br />Mpumalanga, South Africa</span>
+            </div>
+          </div>
 
           {/* FOLLOW */}
 
@@ -167,7 +203,7 @@ function Footer() {
             </a>
 
             <a
-              href="https://wa.me/27767872888"
+              href="https://wa.me/27769387673"
               target="_blank"
               rel="noreferrer"
             >

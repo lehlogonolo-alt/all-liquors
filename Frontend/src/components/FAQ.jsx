@@ -8,6 +8,8 @@ function FAQ() {
     ["What products does All Liquors sell?", "All Liquors offers alcoholic beverages, soft drinks and selected related products. Availability may vary according to current stock."],
     ["How does Pay & Collect work?", "Add products to your basket, complete secure payment online and use the single collection code issued for your order when collecting in store."],
     ["Do I need identification when collecting alcohol?", "Yes. Customers collecting alcoholic products may be required to present valid identification confirming that they are 18 years or older."],
+    ["Do you deliver products?", "All Liquors currently offers Pay & Collect for online product orders. Courier or home delivery is not currently offered."],
+    ["How do I request a refund?", "Use our Contact page and provide your order number, the item concerned and the reason for your request. See the Refund Policy for eligibility and timelines."],
     ["Can anyone purchase alcohol from the website?", "No. Alcohol may only be purchased by persons who are legally permitted to purchase alcohol in South Africa and are at least 18 years old."],
     ["How do event tickets work?", "Choose an available event and ticket category, complete payment and receive a digital ticket with a unique QR code for entry."],
     ["What happens if my event QR code does not scan?", "An authorised administrator can manually verify and check in a valid ticket through the ticket management system."],
