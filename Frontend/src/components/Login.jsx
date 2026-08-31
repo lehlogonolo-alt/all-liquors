@@ -3,8 +3,11 @@ import { useNavigate, Link } from "react-router-dom";
 import { toast } from "sonner";
 import allLiquorsLogo from "../assets/allliquors-logo.jpeg";
 
-function Login({ setUser }) {
+const API_BASE = (
+  import.meta.env.VITE_API_URL || "http://localhost:3000"
+).replace(/\/$/, "");
 
+function Login({ setUser }) {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
@@ -22,9 +25,8 @@ function Login({ setUser }) {
     setLoading(true);
 
     try {
-
       const response = await fetch(
-        "http://localhost:3000/login",
+        `${API_BASE}/login`,
         {
           method: "POST",
           headers: {
@@ -45,7 +47,6 @@ function Login({ setUser }) {
       }
 
       if (data.user) {
-
         toast.success(data.message);
 
         localStorage.setItem(
@@ -53,7 +54,10 @@ function Login({ setUser }) {
           JSON.stringify(data.user)
         );
 
-        sessionStorage.setItem("accessToken", data.token);
+        localStorage.setItem(
+          "accessToken",
+          data.token
+        );
 
         setUser(data.user);
 
@@ -62,46 +66,40 @@ function Login({ setUser }) {
         } else {
           navigate("/");
         }
-
       }
 
     } catch (error) {
-
       console.log(error);
       toast.error("Unable to connect to server");
 
     } finally {
-
       setLoading(false);
-
     }
   }
 
   return (
-
     <div className="auth-page">
-
       <div className="auth-card">
 
         <div className="auth-header">
-
-          <img className="auth-brand-logo" src={allLiquorsLogo} alt="All Liquors" />
+          <img
+            className="auth-brand-logo"
+            src={allLiquorsLogo}
+            alt="All Liquors"
+          />
 
           <h1>Welcome Back</h1>
 
           <p>
             Sign in to your All Liquors account.
           </p>
-
         </div>
 
         <form
           className="auth-form"
           onSubmit={handleLogin}
         >
-
           <div className="auth-form-group">
-
             <label>Email Address</label>
 
             <input
@@ -112,11 +110,9 @@ function Login({ setUser }) {
                 setEmail(e.target.value)
               }
             />
-
           </div>
 
           <div className="auth-form-group">
-
             <label>Password</label>
 
             <input
@@ -127,15 +123,12 @@ function Login({ setUser }) {
                 setPassword(e.target.value)
               }
             />
-
           </div>
 
           <div className="forgot-password">
-
             <Link to="/forgot-password">
               Forgot your password?
             </Link>
-
           </div>
 
           <button
@@ -145,7 +138,6 @@ function Login({ setUser }) {
           >
             {loading ? "Signing In..." : "Sign In"}
           </button>
-
         </form>
 
         <div className="auth-divider">
@@ -158,11 +150,8 @@ function Login({ setUser }) {
         >
           Create an Account
         </Link>
-
       </div>
-
     </div>
-
   );
 }
 

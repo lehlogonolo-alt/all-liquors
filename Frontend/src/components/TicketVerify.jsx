@@ -17,7 +17,10 @@ function TicketVerify() {
   const [loading, setLoading] = useState(true);
   const [checkingIn, setCheckingIn] = useState(false);
 
-  const user = JSON.parse(localStorage.getItem("user"));
+  const user = JSON.parse(
+    localStorage.getItem("user")
+  );
+
   const autoCheckInStarted = useRef(false);
 
   async function loadTicket() {
@@ -55,7 +58,8 @@ function TicketVerify() {
     try {
       setCheckingIn(true);
 
-      const authToken = localStorage.getItem("token");
+      const authToken =
+        localStorage.getItem("accessToken");
 
       if (!authToken) {
         throw new Error(
@@ -102,10 +106,15 @@ function TicketVerify() {
 
   useEffect(() => {
     async function verifyAndAutoCheckIn() {
-      const loadedTicket = await loadTicket();
+      const loadedTicket =
+        await loadTicket();
+
+      const authToken =
+        localStorage.getItem("accessToken");
 
       if (
         user?.isAdmin &&
+        authToken &&
         loadedTicket?.TicketStatus === "valid" &&
         !autoCheckInStarted.current
       ) {
