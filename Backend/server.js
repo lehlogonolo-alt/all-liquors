@@ -2682,8 +2682,7 @@ app.get("/orders/verify/:reference", async (req, res) => {
     if (
       data.status === "success" &&
       paidAmount === expectedAmount &&
-      paidCurrency === "ZAR" &&
-      (!paymentChannel || paymentChannel === "eft")
+      paidCurrency === "ZAR" 
     ) {
       if (order.PaymentStatus !== "paid") {
         await sql.query`
@@ -2808,8 +2807,7 @@ app.post("/paystack/webhook", async (req, res) => {
         if (
           resortBooking &&
           paidAmount === Math.round(Number(resortBooking.TotalAmount) * 100) &&
-          paidCurrency === "ZAR" &&
-          (!paymentChannel || paymentChannel === "eft")
+          paidCurrency === "ZAR" 
         ) {
           await sql.query`
             UPDATE ResortBookings
@@ -2835,8 +2833,7 @@ app.post("/paystack/webhook", async (req, res) => {
         if (
           order &&
           paidAmount === Math.round(Number(order.TotalAmount) * 100) &&
-          paidCurrency === "ZAR" &&
-          (!paymentChannel || paymentChannel === "eft")
+          paidCurrency === "ZAR" 
         ) {
           await sql.query`
             UPDATE Orders
@@ -3420,8 +3417,7 @@ app.get("/resort/bookings/verify/:reference", async (req, res) => {
     if (
       data.status === "success" &&
       paidAmount === expectedAmount &&
-      paidCurrency === "ZAR" &&
-      (!paymentChannel || paymentChannel === "eft")
+      paidCurrency === "ZAR" 
     ) {
       await sql.query`
         UPDATE ResortBookings
