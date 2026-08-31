@@ -2576,7 +2576,6 @@ app.post("/orders/initialize", async (req, res) => {
         email: user.Email,
         amount: amountInKobo,
         currency: "ZAR",
-        channels: PAYSTACK_CHANNELS,
         reference,
         callback_url: `${process.env.FRONTEND_URL}/orders/callback`,
         subaccount: developerSubaccount,
@@ -3329,7 +3328,6 @@ app.post("/resort/bookings/initialize", async (req, res) => {
         email: user.Email,
         amount: Math.round(totals.totalAmount * 100),
         currency: "ZAR",
-        channels: PAYSTACK_CHANNELS,
         reference,
         callback_url: `${process.env.FRONTEND_URL}/resort/callback`,
         subaccount: developerSubaccount,
@@ -3726,7 +3724,8 @@ app.post('/tickets/initialize',ticketPurchaseRateLimit,async(req,res)=>{
     }catch(err){if(tx._aborted!==true) await tx.rollback();throw err;}
     const reference=`${orderNumber}-${Date.now()}`; await sql.query`UPDATE EventTicketOrders SET PaystackReference=${reference},UpdatedAt=GETDATE() WHERE Id=${orderId}`;
     try{
-      const response=await paystack.post('/transaction/initialize',{email:user.Email,amount:Math.round(totals.totalAmount*100),currency:'ZAR',channels:PAYSTACK_CHANNELS,reference,callback_url:`${process.env.FRONTEND_URL}/tickets/callback`,subaccount:developerSubaccount,transaction_charge:Math.round(totals.mainAccountChargeAmount*100),bearer:'account',metadata:{paymentType:'event_ticket',eventId:Number(eventId),ticketOrderId:orderId,orderNumber,userId:Number(userId),items:cleaned,totalAmount:totals.totalAmount}});
+      const response=await paystack.post('/transaction/initialize',{email:user.Email,amount:Math.round(totals.totalAmount*100),currency:'ZAR',
+        reference,callback_url:`${process.env.FRONTEND_URL}/tickets/callback`,subaccount:developerSubaccount,transaction_charge:Math.round(totals.mainAccountChargeAmount*100),bearer:'account',metadata:{paymentType:'event_ticket',eventId:Number(eventId),ticketOrderId:orderId,orderNumber,userId:Number(userId),items:cleaned,totalAmount:totals.totalAmount}});
       return res.json({authorizationUrl:response.data.data.authorization_url,reference,orderNumber,holdMinutes:EVENT_TICKET_HOLD_MINUTES,...totals});
     }catch(paystackError){
       const failTx=new sql.Transaction();await failTx.begin();try{for(const item of cleaned){await new sql.Request(failTx).input('typeId',sql.Int,item.ticketTypeId).input('qty',sql.Int,item.quantity).query(`UPDATE EventTicketTypes SET WebsiteTicketsHeld=CASE WHEN WebsiteTicketsHeld>=@qty THEN WebsiteTicketsHeld-@qty ELSE 0 END WHERE Id=@typeId`);}await new sql.Request(failTx).input('orderId',sql.Int,orderId).query(`UPDATE EventTicketOrders SET PaymentStatus='failed',HoldStatus='released',UpdatedAt=GETDATE() WHERE Id=@orderId AND PaymentStatus='pending'`);await failTx.commit();}catch(e){await failTx.rollback();}
