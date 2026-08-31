@@ -2328,9 +2328,8 @@ function ticketPurchaseRateLimit(req, res, next) {
 
 const SERVICE_FEE_PERCENT = 8.0;
 // Paystack South Africa Pay-by-Bank checkout.
-// `eft` is the hosted-checkout channel for EFT/Pay-by-Bank.
-// Paystack currently lists Ozow EFT and Capitec Pay at 2% with no flat fee.
-const PAYSTACK_CHANNELS = ["eft"];
+// Processing-fee estimate retained from the existing payment model.
+// Checkout itself no longer forces a specific Paystack channel.
 const PAYSTACK_EFT_RATE = 0.02;
 const PAYSTACK_FEE_VAT_RATE = 0.15;
 const COLLECTION_HOLD_HOURS = 48;
@@ -3657,7 +3656,13 @@ async function sendEventTicketConfirmation(orderId){
 async function confirmEventTicketPayment(reference,paystackData){
   const orderResult=await sql.query`SELECT * FROM EventTicketOrders WHERE PaystackReference=${reference}`; const order=orderResult.recordset[0]; if(!order) return {ok:false,message:'Ticket order not found'};
   const expected=Math.round(Number(order.TotalAmount)*100), paid=Number(paystackData.amount), currency=String(paystackData.currency||'').toUpperCase(), channel=String(paystackData.channel||'').toLowerCase();
-  if(paystackData.status!=='success'||paid!==expected||currency!=='ZAR'||(channel&&channel!=='eft')) return {ok:false,message:'Payment details could not be verified'};
+  if(
+    paystackData.status !== 'success' ||
+    paid !== expected ||
+    currency !== 'ZAR'
+  ) {
+    return { ok:false, message:'Payment details could not be verified' };
+  }
   if(order.PaymentStatus==='paid'){await issueEventTickets(order.Id);return {ok:true,orderId:order.Id};}
   const tx=new sql.Transaction(); await tx.begin();
   try{
