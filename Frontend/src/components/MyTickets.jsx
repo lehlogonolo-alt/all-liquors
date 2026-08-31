@@ -4,6 +4,10 @@ import { toast } from "sonner";
 
 const PER_PAGE = 6;
 
+const API_BASE = (
+  import.meta.env.VITE_API_URL || "http://localhost:3000"
+).replace(/\/$/, "");
+
 function MyTickets() {
   const user = JSON.parse(localStorage.getItem("user"));
   const [tickets, setTickets] = useState([]);
@@ -12,7 +16,7 @@ function MyTickets() {
 
   useEffect(() => {
     if (!user?.id) return;
-    fetch(`http://localhost:3000/tickets/user/${user.id}`)
+    fetch(`${API_BASE}/tickets/user/${user.id}`)
       .then(async (res) => { const data = await res.json(); if (!res.ok) throw new Error(data.message || "Unable to load tickets"); return data; })
       .then(setTickets).catch((err) => toast.error(err.message));
   }, [user?.id]);
@@ -48,7 +52,10 @@ function MyTickets() {
               {ticket.TicketTypeName && <p className="digital-ticket-category"><FaTicketAlt /> {ticket.TicketTypeName}</p>}
               <p><FaMapMarkerAlt /> {ticket.Location}</p>
               <p><FaCalendarAlt /> {new Date(ticket.EventDate).toLocaleString()}</p>
-              <div className="ticket-qr-wrap"><img src={`http://localhost:3000/tickets/token/${ticket.TicketToken}/qr`} alt={`QR code for ${ticket.TicketNumber}`} /><div><FaQrcode /><strong>{ticket.TicketNumber}</strong><span>Scan at entrance</span></div></div>
+              <div className="ticket-qr-wrap"><img
+  src={`${API_BASE}/tickets/token/${ticket.TicketToken}/qr`}
+  alt={`QR code for ${ticket.TicketNumber}`}
+/><div><FaQrcode /><strong>{ticket.TicketNumber}</strong><span>Scan at entrance</span></div></div>
             </div>
           </article>
         ))}
