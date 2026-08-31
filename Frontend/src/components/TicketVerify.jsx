@@ -18,7 +18,6 @@ function TicketVerify() {
   const [checkingIn, setCheckingIn] = useState(false);
 
   const user = JSON.parse(localStorage.getItem("user"));
-
   const autoCheckInStarted = useRef(false);
 
   async function loadTicket() {
@@ -32,7 +31,9 @@ function TicketVerify() {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.message || "Ticket not found");
+        throw new Error(
+          data.message || "Ticket not found"
+        );
       }
 
       setTicket(data);
@@ -54,12 +55,21 @@ function TicketVerify() {
     try {
       setCheckingIn(true);
 
+      const authToken = localStorage.getItem("token");
+
+      if (!authToken) {
+        throw new Error(
+          "Admin session not found. Please sign in again."
+        );
+      }
+
       const response = await fetch(
         `${API_BASE}/tickets/token/${token}/check-in`,
         {
           method: "POST",
           headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${authToken}`
           },
           body: JSON.stringify({
             adminUserId: user?.id
@@ -75,7 +85,9 @@ function TicketVerify() {
         );
       }
 
-      toast.success("Ticket checked in successfully");
+      toast.success(
+        "Ticket checked in successfully"
+      );
 
       await loadTicket();
 
@@ -128,8 +140,11 @@ function TicketVerify() {
     );
   }
 
-  const valid = ticket.TicketStatus === "valid";
-  const used = ticket.TicketStatus === "used";
+  const valid =
+    ticket.TicketStatus === "valid";
+
+  const used =
+    ticket.TicketStatus === "used";
 
   return (
     <div className="ticket-verify-page">
@@ -159,10 +174,11 @@ function TicketVerify() {
         <h2>{ticket.Title}</h2>
 
         <div className="ticket-verify-details">
-
           <div>
             <span>Ticket</span>
-            <strong>{ticket.TicketNumber}</strong>
+            <strong>
+              {ticket.TicketNumber}
+            </strong>
           </div>
 
           <div>
@@ -176,7 +192,9 @@ function TicketVerify() {
 
           <div>
             <span>Status</span>
-            <strong>{ticket.TicketStatus}</strong>
+            <strong>
+              {ticket.TicketStatus}
+            </strong>
           </div>
 
           {ticket.CheckedInAt && (
@@ -189,27 +207,27 @@ function TicketVerify() {
               </strong>
             </div>
           )}
-
         </div>
 
         {!user?.isAdmin && valid && (
           <p className="ticket-gate-note">
-            Ticket is valid. Gate staff must scan this QR
-            while signed in with an admin account to check
-            the ticket in.
+            Ticket is valid. Gate staff must scan
+            this QR to check the ticket in.
           </p>
         )}
 
-        {user?.isAdmin && valid && checkingIn && (
-          <p className="ticket-gate-note">
-            Checking ticket in...
-          </p>
-        )}
+        {user?.isAdmin &&
+          valid &&
+          checkingIn && (
+            <p className="ticket-gate-note">
+              Checking ticket in...
+            </p>
+          )}
 
         {used && (
           <p className="ticket-gate-note">
-            This ticket has already been checked in and
-            cannot be used again.
+            This ticket has already been checked
+            in and cannot be used again.
           </p>
         )}
       </div>
