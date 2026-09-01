@@ -1,13 +1,11 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-ZA">
   <head>
     <meta charset="UTF-8" />
 
-    <link
-      rel="icon"
-      type="image/jpeg"
-      href="/allliquor-logo.jpeg"
-    />
+    <!-- =========================
+         BASIC SITE SETTINGS
+    ========================== -->
 
     <meta
       name="viewport"
@@ -19,7 +17,33 @@
       content="#0b1426"
     />
 
-    <title>All Liquors | Liquor Store, Events & Elephant Resort</title>
+    <meta
+      name="color-scheme"
+      content="light"
+    />
+
+    <!-- =========================
+         FAVICON / BRANDING
+    ========================== -->
+
+    <link
+      rel="icon"
+      type="image/jpeg"
+      href="/allliquor-logo.jpeg"
+    />
+
+    <link
+      rel="apple-touch-icon"
+      href="/allliquor-logo.jpeg"
+    />
+
+    <!-- =========================
+         PRIMARY SEO
+    ========================== -->
+
+    <title>
+      All Liquors | Liquor Store, Events & Elephant Resort
+    </title>
 
     <meta
       name="description"
@@ -28,13 +52,36 @@
 
     <meta
       name="robots"
-      content="index, follow"
+      content="index, follow, max-image-preview:large"
+    />
+
+    <meta
+      name="googlebot"
+      content="index, follow, max-image-preview:large"
     />
 
     <link
       rel="canonical"
       href="https://allliquors.co.za/"
     />
+
+    <link
+      rel="alternate"
+      hreflang="en-ZA"
+      href="https://allliquors.co.za/"
+    />
+
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href="https://allliquors.co.za/"
+    />
+
+    <!-- =========================
+         OPEN GRAPH
+         WhatsApp / Facebook /
+         LinkedIn sharing
+    ========================== -->
 
     <meta
       property="og:title"
@@ -60,6 +107,106 @@
       property="og:site_name"
       content="All Liquors"
     />
+
+    <meta
+      property="og:locale"
+      content="en_ZA"
+    />
+
+    <meta
+      property="og:image"
+      content="https://allliquors.co.za/allliquor-logo.jpeg"
+    />
+
+    <meta
+      property="og:image:alt"
+      content="All Liquors"
+    />
+
+    <!-- =========================
+         TWITTER / X SHARING
+    ========================== -->
+
+    <meta
+      name="twitter:card"
+      content="summary_large_image"
+    />
+
+    <meta
+      name="twitter:title"
+      content="All Liquors | Liquor Store, Events & Elephant Resort"
+    />
+
+    <meta
+      name="twitter:description"
+      content="Shop liquor, browse upcoming events and book Elephant Resort experiences with All Liquors in South Africa."
+    />
+
+    <meta
+      name="twitter:image"
+      content="https://allliquors.co.za/allliquor-logo.jpeg"
+    />
+
+    <!-- =========================
+         STRUCTURED DATA
+         Helps Google understand
+         the business and website
+    ========================== -->
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "LiquorStore",
+          "@id": "https://allliquors.co.za/#business",
+          "name": "All Liquors",
+          "url": "https://allliquors.co.za/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://allliquors.co.za/allliquor-logo.jpeg"
+          },
+          "image": "https://allliquors.co.za/allliquor-logo.jpeg",
+          "description": "All Liquors offers liquor, beverages, secure Pay & Collect shopping, events and Elephant Resort experiences in South Africa.",
+          "areaServed": {
+            "@type": "Country",
+            "name": "South Africa"
+          },
+          "currenciesAccepted": "ZAR",
+          "paymentAccepted": [
+            "Credit Card",
+            "Debit Card",
+            "Electronic Payment"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://allliquors.co.za/#website",
+          "url": "https://allliquors.co.za/",
+          "name": "All Liquors",
+          "alternateName": "All Liquors Wholesale",
+          "inLanguage": "en-ZA",
+          "publisher": {
+            "@id": "https://allliquors.co.za/#business"
+          }
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://allliquors.co.za/#webpage",
+          "url": "https://allliquors.co.za/",
+          "name": "All Liquors | Liquor Store, Events & Elephant Resort",
+          "description": "Shop liquor, browse upcoming events and book Elephant Resort experiences with All Liquors in South Africa.",
+          "isPartOf": {
+            "@id": "https://allliquors.co.za/#website"
+          },
+          "about": {
+            "@id": "https://allliquors.co.za/#business"
+          },
+          "inLanguage": "en-ZA"
+        }
+      ]
+    }
+    </script>
   </head>
 
   <body>
