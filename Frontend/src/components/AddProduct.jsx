@@ -98,22 +98,23 @@ function AddProduct() {
             <label>Category</label>
 
             <select
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-            >
-              <option>Beer</option>
-              <option>Wine</option>
-              <option>Whisky</option>
-              <option>Brandy</option>
-              <option>Vodka</option>
-              <option>Gin</option>
-              <option>Spirits</option>
-              <option>Rum</option>
-              <option>Champagne</option>
-              <option>Accessories</option>
-              <option>Snacks</option>
-              <option>Soft Drinks</option>
-            </select>
+  value={category}
+  onChange={(e) => setCategory(e.target.value)}
+>
+  <option value="Beer">Beer</option>
+  <option value="Wine">Wine</option>
+  <option value="Champagne">Champagne</option>
+  <option value="Spirits">Spirits</option>
+  <option value="Whisky">Whisky</option>
+  <option value="Vodka">Vodka</option>
+  <option value="Brandy">Brandy</option>
+  <option value="Gin">Gin</option>
+  <option value="Rum">Rum</option>
+  <option value="Cider">Cider</option>
+  <option value="Soft Drinks">Soft Drinks</option>
+  <option value="Snacks">Snacks</option>
+  <option value="Accessories">Accessories</option>
+</select>
           </div>
 
           <div className="form-group">

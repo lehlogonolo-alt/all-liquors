@@ -190,7 +190,7 @@ function Cart() {
 
           <div className="cart-trust-note">
             <FaShieldAlt />
-            <p>Your product prices are protected for All Liquors. Online service and payment-processing fees are shown separately.</p>
+            <p>Note you will receive a collection code after successful payment. The store will not be able to provide the product without this code.</p>
           </div>
 
           <label className="cart-terms-row">
@@ -213,7 +213,7 @@ function Cart() {
             {submitting ? "Opening secure checkout..." : `Pay R${estimatedTotal.toFixed(2)}`}
           </button>
 
-          <p className="cart-secure-copy">Final prices are recalculated securely by the server before Paystack checkout.</p>
+          <p className="cart-secure-copy">Final prices are recalculated securely through Paystack checkout.</p>
         </aside>
       </div>
     </main>

@@ -428,8 +428,7 @@ function ElephantResort() {
         <FaShieldAlt />
 
         <p>
-          No online service fee is added to the advertised admission price.
-          Only the secure payment-processing fee is added at checkout.
+          Note you will receive a booking confirmation and entry code after successful payment. The resort will not be able to admit you without this code.
         </p>
 
       </div>

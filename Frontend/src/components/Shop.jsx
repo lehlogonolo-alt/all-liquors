@@ -185,24 +185,24 @@ function Shop() {
         <div className="shop-select-wrap">
           <FaFilter className="shop-filter-icon" />
           <select
-            value={category}
-            onChange={handleCategory}
-          >
-          <option value="All">All Categories</option>
-          <option value="Beer">Beer</option>
-          <option value="Wine">Wine</option>
-          <option value="Soft Drinks">Champagne</option>
-          <option value="Soft Drinks">Spirits</option>
-          <option value="Whisky">Whisky</option>
-          <option value="Vodka">Vodka</option>
-          <option value="Brandy">Brandy</option>
-          <option value="Gin">Gin</option>
-          <option value="Rum">Rum</option>
-          <option value="Cider">Cider</option>
-          <option value="Soft Drinks">Soft Drinks</option>
-           <option value="Snacks">Snacks</option>
-           <option value="Accessories">Accessories</option>
-          </select>
+  value={category}
+  onChange={handleCategory}
+>
+  <option value="All">All Categories</option>
+  <option value="Beer">Beer</option>
+  <option value="Wine">Wine</option>
+  <option value="Champagne">Champagne</option>
+  <option value="Spirits">Spirits</option>
+  <option value="Whisky">Whisky</option>
+  <option value="Vodka">Vodka</option>
+  <option value="Brandy">Brandy</option>
+  <option value="Gin">Gin</option>
+  <option value="Rum">Rum</option>
+  <option value="Cider">Cider</option>
+  <option value="Soft Drinks">Soft Drinks</option>
+  <option value="Snacks">Snacks</option>
+  <option value="Accessories">Accessories</option>
+</select>
         </div>
 
         <div className="shop-select-wrap">
