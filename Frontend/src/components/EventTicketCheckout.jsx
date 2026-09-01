@@ -177,7 +177,7 @@ function EventTicketCheckout() {
             <div className="ticket-total"><span>Total</span><strong>R{totals.totalAmount.toFixed(2)}</strong></div>
           </div>
 
-          <div className="ticket-customer-fee-note"><FaShieldAlt /><span>Only the secure payment-processing fee is added at checkout. The advertised ticket price is not increased by a service fee.</span></div>
+          <div className="ticket-customer-fee-note"><FaShieldAlt /><span>Note you will receive a digital ticket after successful payment. The event will not be able to admit you without this ticket.</span></div>
 
           <label className="ticket-terms-row">
             <input type="checkbox" checked={agreed} onChange={(e) => setAgreed(e.target.checked)} disabled={submitting} />
