@@ -226,9 +226,15 @@ function Footer() {
           </p>
 
           <p>
-            Designed & Developed by
-            <strong> SJ Solutions </strong>
-          </p>
+           Designed &amp; Developed by{" "}
+          <a
+          href="https://hgx-solutions.netlify.app/"
+          target="_blank"
+          rel="noopener noreferrer"
+          >
+    <strong>HGX Solutions</strong>
+  </a>
+</p>
 
         </div>
 
